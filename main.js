@@ -6,6 +6,7 @@ const imageNames = ["tenis1.jpeg", "tenis2.jpeg", "tenis3.jpeg", "tenis4.jpeg",
 const btnReset = $('#btnReset');
 let flippedCard = []
 let refreshedHTML;
+let twoCardsFlipped = false;
 
 function addFound() {
     let txtFound = spanFound.text();
@@ -47,13 +48,16 @@ function flipCards() {
             } else if (it==2) {
                 // Las cartas son las mismas y se bloquean
                 if (firstCardImg.find('img').attr('src') == $(card).find('img').attr('src')) {
-                    addFound();
                     sleep(1500).then(() => {
                         firstCardImg.attr('target', 'unavailable');
                         $(card).attr('target', 'unavailable');
                         firstCardImg.find('img').css('display', 'none');
                         $(card).find('img').css('display', 'none');
+                        firstCardImg.css('pointer-events', 'none');    
+                        $(card).css('pointer-events', 'none');    
+
                     });
+                    addFound();
                 } 
                 else {
                     // Las cartas no son las mismas y se esconden
@@ -62,6 +66,8 @@ function flipCards() {
                         $(card).attr('target', 'hidden');
                         firstCardImg.find('img').css('display', 'none');
                         $(card).find('img').css('display', 'none');
+                        firstCardImg.css('pointer-events', 'auto');   
+                        $(card).css('pointer-events', 'auto');    
                     });
                 }
             }
@@ -71,7 +77,10 @@ function flipCards() {
 
 
 cards.on('click', function(e) {
-    e.preventDefault();
+    e.preventDefault();    
+    if(twoCardsFlipped){
+        return;
+    }
 
     if($(this).attr('target') == 'unavailable') {
         return;
@@ -81,16 +90,20 @@ cards.on('click', function(e) {
     let imgVal = $(this).find('img');
     $(this).attr('target', 'flipped');
     $(imgVal).css('display', 'block');
-    
-    // console.log('Card clicked is '+cardVal);
+    $(this).css('pointer-events', 'none');    
     flippedCard.push(cardVal);
-    // console.log('Array: '+flippedCard);
+    
     if (flippedCard.length === 2) {
-        addAttempt();
+        twoCardsFlipped = true;
         flippedCard.pop();
         flippedCard.pop();
         flipCards();
+        addAttempt();
     }
+
+    sleep(2000).then(() => {
+        twoCardsFlipped = false;
+    })
 })
 
 btnReset.on('click', function() {
