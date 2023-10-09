@@ -1,0 +1,117 @@
+body{
+    background-color: rgb(152, 153, 153);
+}
+
+.titleContainer {
+    width: 350px;
+    margin: auto;
+    margin-bottom: 15px;
+    text-align: left;
+    margin-top: 100px;
+    background-color: #000000;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.titleContainer>h2 {
+    letter-spacing: 3px;
+    font-weight: bolder;
+    padding: 10px 10px;
+    margin-bottom: 0px;
+}
+
+.titleContainer>h2>span {
+    font-weight: 100;
+}
+
+.titleContainer>h2, .titleContainer>span {
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+    margin: auto;
+    width: 350px;
+    height: 540px;
+    border-radius: 10px;
+    /* border: solid 1px black; */
+    background-color: #808080;
+}
+
+.tarjetas {
+    max-width: 80px;
+    height: 100px;
+    box-sizing: border-box;
+    border: solid 1px black;
+    border-radius: 10px;
+    margin: 5px 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    perspective: 1000px;
+    transition: transform 0.75s ease;
+
+}
+
+.tarjetas[target="flipped"] {
+    transform: rotateY(360deg);
+}
+
+img {
+    width: 60px;
+    height: 50px;
+    height: 50px;
+    display: none;
+}
+
+
+.row > div:first-child {
+    margin-left: 0;
+}
+
+.row > div:last-child {
+    margin-right: 0;
+}
+
+.container > div:first-child > .tarjetas {
+    margin-top: 0;
+}
+
+.container > div:last-child > .tarjetas {
+    margin-bottom: 0;
+}
+
+div[target="hidden"]{
+    background: transparent;
+    background-color: #fff;
+}
+
+div[target="flipped"] {
+    background: fixed;
+    background-color: #fff;
+}
+
+div[target="unavailable"] {
+    background-color: #808080;
+    border: none;
+}
+
+.btnContainer {
+    margin: auto;
+    margin-top: 15px;
+    text-align: center;
+    width: 350px;
+}
+
+#btnReset {
+    width: 350px;
+    height: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+    background-color: aqua;
+}
+
+#btnReset:hover {
+    background-color: rgb(0, 0, 0);
+    color: aqua;
+}
