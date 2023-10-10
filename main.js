@@ -101,7 +101,7 @@ cards.on('click', function(e) {
         addAttempt();
     }
 
-    sleep(2000).then(() => {
+    sleep(2500).then(() => {
         twoCardsFlipped = false;
     })
 })
